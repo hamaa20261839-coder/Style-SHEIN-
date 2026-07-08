@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>ستايل بلس | متجرك للموضة</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+:root{--black:#0a0a0a;--white:#fff;--gray-bg:#f7f7f7;--gray-light:#f2f2f2;--gray-mid:#e5e5e5;--gray-text:#999;--red:#d93025;--orange:#f05a00;--price-color:#d93025;}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+body{font-family:'Cairo',sans-serif;background:var(--gray-bg);color:var(--black);max-width:480px;margin:0 auto;min-height:100vh;padding-bottom:70px;overflow-x:hidden;}
+.si{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;display:block;}
+.si-sm{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;display:block;}
+.si-xs{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;display:block;}
+/* TOP BAR */
+.top-bar{background:white;padding:10px 12px 0;position:sticky;top:0;z-index:200;box-shadow:0 1px 0 var(--gray-mid);}
+.top-bar-row1{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+.top-bar-icons{display:flex;gap:4px;align-items:center;}
+.icon-btn{background:none;border:none;cursor:pointer;position:relative;padding:6px;display:flex;align-items:center;justify-content:center;color:#333;border-radius:8px;transition:background .15s;}
+.icon-btn:hover{background:var(--gray-light);}
+.badge-dot{position:absolute;top:3px;left:3px;width:7px;height:7px;background:var(--red);border-radius:50%;border:1.5px solid white;}
+.search-bar{flex:1;display:flex;align-items:center;background:var(--gray-light);border-radius:8px;padding:7px 12px;gap:8px;border:1px solid var(--gray-mid);transition:border-color .2s;}
+.search-bar:focus-within{border-color:#aaa;}
+.search-bar input{flex:1;border:none;background:none;font-family:'Cairo',sans-serif;font-size:.85rem;color:var(--black);outline:none;direction:rtl;}
+.search-bar input::placeholder{color:var(--gray-text);}
+.search-icon-btn{background:var(--black);border:none;width:28px;height:28px;border-radius:6px;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;}
+.nav-tabs{display:flex;overflow-x:auto;scrollbar-width:none;border-top:1px solid var(--gray-mid);padding-top:2px;}
+.nav-tabs::-webkit-scrollbar{display:none;}
+.nav-tab{white-space:nowrap;padding:8px 14px;font-size:.83rem;font-weight:600;font-family:'Cairo',sans-serif;color:#666;border:none;background:none;cursor:pointer;border-bottom:2px solid transparent;transition:color .2s,border-color .2s;}
+.nav-tab.active{color:var(--black);border-bottom-color:var(--black);}
+.menu-btn{padding:8px 10px;color:#333;border:none;background:none;cursor:pointer;border-bottom:2px solid transparent;display:flex;align-items:center;}
+/* HERO */
+.hero-banner{position:relative;overflow:hidden;min-height:210px;display:flex;align-items:center;padding:24px 20px;}
+.hero-bg-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.35;}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,20,35,.92) 40%,rgba(10,20,35,.4) 100%);}
+.hero-text{flex:1;color:white;z-index:2;}
+.hero-hashtag{font-size:.7rem;color:rgba(255,255,255,.6);font-weight:600;letter-spacing:1px;margin-bottom:10px;text-transform:uppercase;}
+.hero-title{font-size:1.55rem;font-weight:900;line-height:1.2;margin-bottom:14px;text-transform:uppercase;}
+.hero-cta{display:inline-block;background:white;color:var(--black);font-family:'Cairo',sans-serif;font-weight:700;font-size:.78rem;padding:8px 20px;border:none;cursor:pointer;letter-spacing:.5px;border-radius:2px;}
+.dots-indicator{position:absolute;bottom:12px;left:50%;transform:translateX(-50%);display:flex;gap:5px;z-index:3;}
+.dot{width:20px;height:2px;background:rgba(255,255,255,.35);border-radius:1px;}.dot.active{background:white;}
+/* INFO BAR */
+.info-bar{background:white;border-top:1px solid var(--gray-mid);border-bottom:1px solid var(--gray-mid);display:flex;align-items:stretch;}
+.info-item{flex:1;padding:10px 12px;display:flex;align-items:center;gap:8px;font-size:.75rem;font-weight:600;color:#333;}
+.info-item:first-child{border-left:1px solid var(--gray-mid);}
+.info-sub{font-size:.63rem;font-weight:400;color:var(--gray-text);display:block;margin-top:1px;}
+.flash-label{display:inline-flex;align-items:center;gap:6px;color:var(--orange);font-weight:700;}
+/* MARQUEE */
+.marquee-wrap{background:var(--black);padding:8px 0;overflow:hidden;white-space:nowrap;}
+.marquee-track{display:inline-block;animation:scroll 22s linear infinite;}
+.marquee-track span{color:rgba(255,255,255,.85);font-size:.76rem;font-weight:600;margin:0 20px;letter-spacing:.5px;}
+.msep{color:rgba(255,255,255,.3)!important;margin:0 4px!important;}
+@keyframes scroll{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+/* CATEGORIES */
+.cats-section{background:white;padding:16px 0 12px;margin-top:8px;}
+.sec-lbl{font-size:.7rem;font-weight:700;color:var(--gray-text);text-transform:uppercase;letter-spacing:1px;padding:0 14px 10px;}
+.cats-scroll{display:flex;gap:6px;overflow-x:auto;padding:0 12px 6px;scrollbar-width:none;}
+.cats-scroll::-webkit-scrollbar{display:none;}
+.cat-item{display:flex;flex-direction:column;align-items:center;gap:7px;min-width:70px;cursor:pointer;}
+.cat-circle{width:68px;height:68px;border-radius:50%;background:var(--gray-light);overflow:hidden;display:flex;align-items:center;justify-content:center;border:1.5px solid var(--gray-mid);transition:transform .15s,border-color .15s;}
+.cat-circle:hover{transform:scale(1.04);border-color:#bbb;}
+.cat-circle img{width:100%;height:100%;object-fit:cover;}
+.cat-label{font-size:.68rem;font-weight:600;text-align:center;color:#444;white-space:nowrap;line-height:1.3;}
+/* PROD TABS */
+.prod-tabs-wrap{background:white;padding:0 12px;margin-top:8px;}
+.prod-tabs{display:flex;border-bottom:1px solid var(--gray-mid);overflow-x:auto;scrollbar-width:none;}
+.prod-tabs::-webkit-scrollbar{display:none;}
+.prod-tab{white-space:nowrap;padding:11px 16px;font-family:'Cairo',sans-serif;font-size:.82rem;font-weight:700;border:none;background:none;cursor:pointer;color:#777;border-bottom:2px solid transparent;margin-bottom:-1px;display:flex;align-items:center;gap:6px;transition:color .2s;}
+.prod-tab.active{color:var(--black);border-bottom-color:var(--black);}
+.prod-tab.active-black{background:var(--black);color:white;border-radius:6px 6px 0 0;}
+/* GRID */
+.products-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--gray-mid);margin-top:2px;min-height:200px;}
+.empty-state{grid-column:1/-1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:50px 20px;gap:14px;background:white;}
+.empty-icon{opacity:.2;color:#333;}
+.empty-state-text{font-size:.9rem;color:var(--gray-text);font-weight:600;text-align:center;line-height:1.6;}
+.product-card{background:white;cursor:pointer;position:relative;transition:opacity .15s;}
+.product-card:active{opacity:.88;}
+.product-img-wrap{position:relative;width:100%;padding-top:130%;background:var(--gray-light);overflow:hidden;}
+.product-img-wrap img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+.prod-ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#ccc;}
+.product-badge{position:absolute;top:8px;right:8px;font-size:.62rem;font-weight:700;padding:2px 8px;border-radius:2px;color:white;background:var(--red);z-index:2;letter-spacing:.3px;}
+.product-badge.hot{background:var(--orange);}.product-badge.new{background:#1565C0;}.product-badge.best{background:#2E7D32;}
+.product-info{padding:9px 10px 11px;}
+.product-brand{font-size:.62rem;color:var(--gray-text);font-weight:700;text-transform:uppercase;margin-bottom:3px;letter-spacing:.5px;}
+.product-name{font-size:.78rem;font-weight:600;color:#2a2a2a;line-height:1.4;margin-bottom:6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.product-pricing{display:flex;align-items:baseline;gap:5px;flex-wrap:wrap;}
+.price-new{font-size:.95rem;font-weight:900;color:var(--price-color);direction:ltr;}
+.price-old{font-size:.72rem;color:#c0c0c0;text-decoration:line-through;direction:ltr;}
+.add-to-cart{position:absolute;bottom:10px;left:10px;width:30px;height:30px;background:var(--black);color:white;border:none;border-radius:50%;font-size:1.1rem;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:transform .15s,background .2s;z-index:2;}
+.add-to-cart:active{transform:scale(.88);}
+/* MID BANNER */
+.mid-banner{margin:8px 0;position:relative;overflow:hidden;min-height:130px;display:flex;align-items:center;justify-content:space-between;padding:20px;}
+.mid-banner-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+.mid-banner-ov{position:absolute;inset:0;background:linear-gradient(90deg,rgba(15,20,35,.92) 50%,rgba(15,20,35,.5) 100%);}
+.mid-banner-text{color:white;z-index:2;}
+.mid-banner-tag{background:var(--orange);color:white;font-size:.62rem;font-weight:700;padding:3px 10px;border-radius:2px;display:inline-block;margin-bottom:8px;letter-spacing:.5px;}
+.mid-banner-title{font-size:1.2rem;font-weight:900;line-height:1.25;margin-bottom:5px;}
+.mid-banner-sub{font-size:.7rem;color:rgba(255,255,255,.6);}
+.mid-banner-btn{z-index:2;background:white;color:var(--black);border:none;font-family:'Cairo',sans-serif;font-weight:700;font-size:.78rem;padding:9px 20px;cursor:pointer;white-space:nowrap;border-radius:2px;flex-shrink:0;}
+/* FLASH */
+.flash-header{background:white;padding:13px 14px;margin-top:8px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--gray-mid);}
+.flash-title{display:flex;align-items:center;gap:8px;font-size:.98rem;font-weight:900;}
+.timer{display:flex;align-items:center;gap:4px;font-size:.7rem;color:#666;font-weight:600;}
+.timer-box{background:var(--black);color:white;font-size:.74rem;font-weight:900;padding:3px 7px;border-radius:4px;font-variant-numeric:tabular-nums;letter-spacing:1px;}
+.timer-sep{color:var(--black);font-weight:700;}
+.products-row{background:white;padding:10px 0 14px 12px;display:flex;gap:10px;overflow-x:auto;scrollbar-width:none;min-height:180px;}
+.products-row::-webkit-scrollbar{display:none;}
+.product-card-h{width:140px;flex-shrink:0;background:white;border-radius:6px;overflow:hidden;border:1px solid var(--gray-mid);cursor:pointer;transition:opacity .15s;}
+.product-card-h:active{opacity:.8;}
+.product-card-h .product-img-wrap{padding-top:100%;}
+.product-card-h .product-info{padding:6px 8px 8px;}
+/* BOTTOM NAV */
+.bottom-nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:480px;background:white;border-top:1px solid var(--gray-mid);display:flex;z-index:300;padding-bottom:env(safe-area-inset-bottom);}
+.bottom-nav-item{flex:1;display:flex;flex-direction:column;align-items:center;padding:9px 4px 6px;cursor:pointer;border:none;background:none;gap:3px;position:relative;transition:opacity .15s;color:#aaa;}
+.bottom-nav-item:active{opacity:.7;}.bottom-nav-item.active{color:var(--black);}
+.bottom-nav-label{font-family:'Cairo',sans-serif;font-size:.6rem;font-weight:600;white-space:nowrap;}
+.nav-badge{position:absolute;top:5px;right:16px;background:var(--red);color:white;font-size:.52rem;font-weight:900;width:14px;height:14px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:1.5px solid white;}
+/* SETTINGS */
+.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:500;backdrop-filter:blur(2px);}
+.overlay.open{display:block;}
+.settings-panel{position:fixed;bottom:0;left:50%;transform:translateX(-50%) translateY(100%);width:100%;max-width:480px;background:white;border-radius:20px 20px 0 0;z-index:600;max-height:90vh;overflow-y:auto;transition:transform .35s cubic-bezier(.34,1.1,.64,1);}
+.settings-panel.open{transform:translateX(-50%) translateY(0);}
+.settings-handle{width:36px;height:4px;background:#e0e0e0;border-radius:2px;margin:14px auto 0;}
+.settings-title{font-size:1rem;font-weight:900;padding:14px 20px 10px;border-bottom:1px solid #f0f0f0;display:flex;align-items:center;gap:8px;}
+.settings-section{padding:16px 20px;border-bottom:1px solid #f0f0f0;}
+.settings-section-title{font-size:.72rem;font-weight:700;color:#aaa;margin-bottom:14px;text-transform:uppercase;letter-spacing:.8px;display:flex;align-items:center;gap:6px;}
+.lang-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.lang-btn{padding:10px 12px;border:1.5px solid #e8e8e8;border-radius:10px;background:white;font-family:'Cairo',sans-serif;font-size:.85rem;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:8px;transition:all .2s;}
+.lang-btn:hover{border-color:#ccc;background:#fafafa;}
+.lang-btn.active{border-color:var(--black);background:var(--black);color:white;}
+.lang-flag{font-size:1.1rem;}
+.admin-lock-area{text-align:center;padding:4px 0 8px;}
+.admin-lock-icon-wrap{display:flex;justify-content:center;margin-bottom:10px;color:#bbb;}
+.admin-lock-text{font-size:.8rem;color:#999;margin-bottom:14px;}
+.admin-code-input{width:100%;padding:12px 16px;border:1.5px solid #e8e8e8;border-radius:10px;font-family:'Cairo',sans-serif;font-size:1rem;text-align:center;font-weight:700;letter-spacing:3px;outline:none;transition:border-color .2s;margin-bottom:10px;}
+.admin-code-input:focus{border-color:#333;}.admin-code-input.error{border-color:var(--red);animation:shake .3s;}
+@keyframes shake{0%,100%{transform:translateX(0);}25%{transform:translateX(-6px);}75%{transform:translateX(6px);}}
+.admin-enter-btn{width:100%;padding:12px;background:var(--black);color:white;border:none;border-radius:10px;font-family:'Cairo',sans-serif;font-size:.9rem;font-weight:700;cursor:pointer;transition:opacity .2s;}
+.admin-enter-btn:active{opacity:.8;}
+/* ADMIN */
+.admin-panel{position:fixed;inset:0;background:white;z-index:700;display:none;flex-direction:column;max-width:480px;margin:0 auto;}
+.admin-panel.open{display:flex;}
+.admin-header{background:var(--black);color:white;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:10;}
+.admin-header-title{font-size:1rem;font-weight:900;display:flex;align-items:center;gap:10px;}
+.admin-close-btn{background:none;border:none;color:white;cursor:pointer;padding:4px;display:flex;}
+.admin-body{flex:1;overflow-y:auto;padding-bottom:20px;}
+.admin-tabs{display:flex;border-bottom:1px solid #eee;background:white;}
+.admin-tab{flex:1;padding:12px 8px;font-family:'Cairo',sans-serif;font-size:.8rem;font-weight:700;border:none;background:none;cursor:pointer;color:#aaa;border-bottom:2px solid transparent;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:5px;}
+.admin-tab.active{color:var(--black);border-bottom-color:var(--black);}
+.admin-section{padding:16px;display:none;}.admin-section.active{display:block;}
+.admin-form-group{margin-bottom:14px;}
+.admin-label{display:block;font-size:.78rem;font-weight:700;color:#555;margin-bottom:6px;}
+.admin-input,.admin-select,.admin-textarea{width:100%;padding:10px 12px;border:1.5px solid #e8e8e8;border-radius:8px;font-family:'Cairo',sans-serif;font-size:.88rem;outline:none;transition:border-color .2s;background:white;color:var(--black);}
+.admin-input:focus,.admin-select:focus,.admin-textarea:focus{border-color:var(--black);}
+.admin-textarea{min-height:70px;resize:vertical;}
+.admin-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.admin-btn{width:100%;padding:13px;border:none;border-radius:10px;font-family:'Cairo',sans-serif;font-size:.9rem;font-weight:700;cursor:pointer;transition:opacity .2s;margin-top:4px;}
+.admin-btn-primary{background:var(--black);color:white;}.admin-btn-danger{background:var(--red);color:white;}.admin-btn-success{background:#2E7D32;color:white;}
+.admin-btn:active{opacity:.8;}
+.admin-product-list{display:flex;flex-direction:column;gap:10px;margin-top:8px;}
+.admin-product-item{display:flex;align-items:center;gap:12px;padding:12px;border:1.5px solid #eee;border-radius:10px;background:white;}
+.admin-product-thumb{width:48px;height:48px;border-radius:8px;overflow:hidden;background:#f5f5f5;flex-shrink:0;display:flex;align-items:center;justify-content:center;}
+.admin-product-thumb img{width:100%;height:100%;object-fit:cover;}
+.admin-product-placeholder{color:#ccc;}
+.admin-product-details{flex:1;min-width:0;}
+.admin-product-name-text{font-size:.82rem;font-weight:700;margin-bottom:3px;}
+.admin-product-price-text{font-size:.75rem;color:var(--price-color);font-weight:700;}
+.admin-product-actions{display:flex;gap:6px;}
+.admin-product-btn{padding:6px 10px;border:none;border-radius:6px;font-family:'Cairo',sans-serif;font-size:.72rem;font-weight:700;cursor:pointer;}
+.admin-edit-btn{background:#1565C0;color:white;}.admin-delete-btn{background:var(--red);color:white;}
+.toast{position:fixed;top:20px;left:50%;transform:translateX(-50%) translateY(-80px);background:#1a1a1a;color:white;padding:10px 22px;border-radius:20px;font-size:.82rem;font-weight:600;z-index:9999;transition:transform .3s ease;white-space:nowrap;max-width:90vw;text-align:center;}
+.toast.show{transform:translateX(-50%) translateY(0);}.toast.success{background:#2E7D32;}.toast.error{background:var(--red);}
+.discount-tag{background:var(--orange);color:white;font-size:.58rem;font-weight:700;padding:1px 5px;border-radius:2px;margin-right:4px;}
+.size-row{display:flex;flex-wrap:wrap;gap:4px;margin:5px 0 4px;}
+.size-chip{font-size:.6rem;font-weight:700;padding:2px 7px;border:1.5px solid #ddd;border-radius:4px;color:#444;background:#fafafa;cursor:pointer;transition:all .15s;}
+.size-chip:hover,.size-chip.selected{background:var(--black);color:white;border-color:var(--black);}
+.size-picker{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;}
+.size-pick-btn{padding:6px 12px;border:1.5px solid #e0e0e0;border-radius:6px;font-family:'Cairo',sans-serif;font-size:.8rem;font-weight:700;background:white;cursor:pointer;transition:all .2s;color:#444;}
+.size-pick-btn.on{background:var(--black);color:white;border-color:var(--black);}
+.edit-modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:800;align-items:flex-end;justify-content:center;backdrop-filter:blur(2px);}
+.edit-modal-overlay.open{display:flex;}
+.edit-modal{background:white;border-radius:20px 20px 0 0;width:100%;max-width:480px;padding:20px 16px 30px;max-height:85vh;overflow-y:auto;}
+.edit-modal-title{font-size:1rem;font-weight:900;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid #eee;display:flex;align-items:center;gap:8px;}
+body.ltr{direction:ltr;}body.ltr .search-bar input{direction:ltr;}body.ltr .info-item:first-child{border-left:none;border-right:1px solid var(--gray-mid);}
+</style>
+</head>
+<body>
+<div class="toast" id="toast"></div>
+<div class="overlay" id="overlay" onclick="closeSettings()"></div>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+  <div class="top-bar-row1">
+    <div class="top-bar-icons">
+      <button class="icon-btn">
+        <svg class="si" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <span class="badge-dot"></span>
+      </button>
+      <button class="icon-btn">
+        <svg class="si" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        <span class="badge-dot"></span>
+      </button>
+    </div>
+    <div class="search-bar">
+      <input type="text" id="search-input" placeholder="بلوفر للنساء" />
+      <button class="icon-btn" style="padding:2px;">
+        <svg class="si-sm" viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+      </button>
+      <button class="search-icon-btn">
+        <svg class="si-xs" viewBox="0 0 24 24" stroke="white"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      </button>
+    </div>
+    <button class="icon-btn">
+      <svg class="si" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+    </button>
+  </div>
+  <div class="nav-tabs">
+    <button class="nav-tab active" data-key="all">الكل</button>
+    <button class="nav-tab" data-key="women">نسائي</button>
+    <button class="nav-tab" data-key="electronics">إلكترونيات</button>
+    <button class="nav-tab" data-key="men">رجالي</button>
+    <button class="nav-tab" data-key="shoes">أحذية</button>
+    <button class="nav-tab" data-key="sport">رياضة</button>
+    <button class="menu-btn" onclick="openSettings()">
+      <svg class="si-sm" viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+  </div>
+</div>
+
+<!-- HERO -->
+<div class="hero-banner">
+  <img class="hero-bg-img" src="https://images.unsplash.com/photo-1445205170230-053b83016050?w=900&q=80&auto=format&fit=crop" alt="" loading="eager"/>
+  <div class="hero-overlay"></div>
+  <div class="hero-text">
+    <div class="hero-hashtag" id="hero-hashtag">#STYLE_SUMMER_SALE</div>
+    <div class="hero-title" id="hero-title">وفّر أكثر<br>على أكثر من<br>600,000 منتج</div>
+    <button class="hero-cta" id="hero-cta">تسوق الآن</button>
+  </div>
+  <div class="dots-indicator"><div class="dot active"></div><div class="dot"></div></div>
+</div>
+
+<!-- INFO BAR -->
+<div class="info-bar">
+  <div class="info-item">
+    <svg class="si-sm" viewBox="0 0 24 24" stroke="#444" fill="none"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+    <div><span id="info-shipping">شحن مجاني</span><span class="info-sub" id="info-shipping-sub">أضف 129$ للتأهل</span></div>
+  </div>
+  <div class="info-item">
+    <div class="flash-label">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="#f05a00" stroke="none"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+      <span id="info-deals">تخفيضات</span>
+    </div>
+    <a href="#flash" style="font-size:.7rem;color:var(--gray-text);text-decoration:none;font-weight:600;" id="info-more">عرض المزيد</a>
+  </div>
+</div>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track" id="marquee-track">
+    <span>شحن مجاني فوق 300 ريال</span><span class="msep">✦</span>
+    <span>منتجات أصلية مضمونة</span><span class="msep">✦</span>
+    <span>أسعار تنافسية</span><span class="msep">✦</span>
+    <span>تشكيلات حصرية</span><span class="msep">✦</span>
+    <span>توصيل خلال 48 ساعة</span><span class="msep">✦</span>
+    <span>شحن مجاني فوق 300 ريال</span><span class="msep">✦</span>
+    <span>منتجات أصلية مضمونة</span><span class="msep">✦</span>
+    <span>أسعار تنافسية</span><span class="msep">✦</span>
+    <span>تشكيلات حصرية</span><span class="msep">✦</span>
+    <span>توصيل خلال 48 ساعة</span><span class="msep">✦</span>
+  </div>
+</div>
+
+<!-- CATEGORIES -->
+<div class="cats-section">
+  <div class="sec-lbl">التصنيفات</div>
+  <div class="cats-scroll">
+    <div class="cat-item"><div class="cat-circle" style="background:#f9e8ef;"><img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=140&q=75&auto=format&fit=crop" alt="نسائي" loading="lazy"/></div><span class="cat-label" data-key="cat-women">نسائي</span></div>
+    <div class="cat-item"><div class="cat-circle" style="background:#fef3e2;"><img src="https://images.unsplash.com/photo-1573612664822-d7d347da7b80?w=140&q=75&auto=format&fit=crop" alt="بلس سايز" loading="lazy"/></div><span class="cat-label" data-key="cat-plus">بلس سايز</span></div>
+    <div class="cat-item"><div class="cat-circle" style="background:#e8f5e9;"><img src="https://images.unsplash.com/photo-1503944583220-79d8926ad5e2?w=140&q=75&auto=format&fit=crop" alt="أطفال" loading="lazy"/></div><span class="cat-label" data-key="cat-kids">أطفال</span></div>
+    <div class="cat-item"><div class="cat-circle" style="background:#e3f2fd;"><img src="https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=140&q=75&auto=format&fit=crop" alt="رجالي" loading="lazy"/></div><span class="cat-label" data-key="cat-men">رجالي</span></div>
+    <div class="cat-item"><div class="cat-circle" style="background:#ede7f6;"><img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=140&q=75&auto=format&fit=crop" alt="أحذية" loading="lazy"/></div><span class="cat-label" data-key="cat-shoes">أحذية</span></div>
+    <div class="cat-item"><div class="cat-circle" style="background:#e0f7fa;"><img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=140&q=75&auto=format&fit=crop" alt="مجوهرات" loading="lazy"/></div><span class="cat-label" data-key="cat-jewelry">مجوهرات</span></div>
+    <div class="cat-item"><div class="cat-circle" style="background:#fff8e1;"><img src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=140&q=75&auto=format&fit=crop" alt="تيشيرتات" loading="lazy"/></div><span class="cat-label" data-key="cat-tshirt">تيشيرتات</span></div>
+    <div class="cat-item"><div class="cat-circle" style="background:#fce4ec;"><img src="https://images.unsplash.com/photo-1617137968427-85924c800a22?w=140&q=75&auto=format&fit=crop" alt="ترند رجالي" loading="lazy"/></div><span class="cat-label" data-key="cat-mentrend">ترند رجالي</span></div>
+    <div class="cat-item"><div class="cat-circle" style="background:#f3e5f5;"><img src="https://images.unsplash.com/photo-1566958769312-82cef41d19ef?w=140&q=75&auto=format&fit=crop" alt="ملابس داخلية" loading="lazy"/></div><span class="cat-label" data-key="cat-inner">ملابس داخلية</span></div>
+    <div class="cat-item"><div class="cat-circle" style="background:#e8f5e9;"><img src="https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?w=140&q=75&auto=format&fit=crop" alt="فساتين" loading="lazy"/></div><span class="cat-label" data-key="cat-dresses">فساتين</span></div>
+  </div>
+</div>
+
+<!-- FLASH SALE -->
+<div id="flash">
+  <div class="flash-header">
+    <div class="flash-title">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="#f05a00"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+      <span id="flash-title-text">تخفيضات سريعة</span>
+    </div>
+    <div class="timer">
+      <span id="timer-label">ينتهي في</span>
+      <span class="timer-box" id="timer-h">02</span><span class="timer-sep">:</span>
+      <span class="timer-box" id="timer-m">47</span><span class="timer-sep">:</span>
+      <span class="timer-box" id="timer-s">33</span>
+    </div>
+  </div>
+  <div class="products-row" id="flash-row">
+    <div class="empty-state" style="grid-column:unset;width:100%;background:transparent;">
+      <div class="empty-icon"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+      <div class="empty-state-text" id="flash-empty-text">لا توجد عروض حالياً</div>
+    </div>
+  </div>
+</div>
+
+<!-- PRODUCT TABS -->
+<div class="prod-tabs-wrap">
+  <div class="prod-tabs">
+    <button class="prod-tab active-black active" data-key="for-you">لك</button>
+    <button class="prod-tab"><svg class="si-xs" viewBox="0 0 24 24" stroke="currentColor" fill="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><span data-key="new">جديد</span></button>
+    <button class="prod-tab"><svg class="si-xs" viewBox="0 0 24 24" stroke="currentColor" fill="none"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg><span data-key="offers">عروض</span></button>
+    <button class="prod-tab"><svg class="si-xs" viewBox="0 0 24 24" stroke="currentColor" fill="none"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2z"/></svg><span data-key="bestseller">الأكثر مبيعاً</span></button>
+  </div>
+</div>
+
+<!-- PRODUCTS GRID -->
+<div class="products-grid" id="products-grid">
+  <div class="empty-state">
+    <div class="empty-icon"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></div>
+    <div class="empty-state-text" id="empty-grid-text">المتجر فارغ حالياً<br>ترقبوا المنتجات قريباً!</div>
+  </div>
+</div>
+
+<!-- MID BANNER -->
+<div class="mid-banner">
+  <img class="mid-banner-bg" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=900&q=80&auto=format&fit=crop" alt="" loading="lazy"/>
+  <div class="mid-banner-ov"></div>
+  <div class="mid-banner-text">
+    <div class="mid-banner-tag" id="mid-tag">عرض محدود</div>
+    <div class="mid-banner-title" id="mid-title">خصم 40%<br>تشكيلة الصيف</div>
+    <div class="mid-banner-sub" id="mid-sub">سارع — العرض ينتهي قريباً</div>
+  </div>
+  <button class="mid-banner-btn" id="mid-btn">تسوق العرض</button>
+</div>
+
+<!-- BOTTOM NAV -->
+<nav class="bottom-nav">
+  <button class="bottom-nav-item active" onclick="setNav(this)">
+    <svg class="si-sm" viewBox="0 0 24 24" stroke="currentColor" fill="none"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span class="bottom-nav-label">تسوق</span>
+  </button>
+  <button class="bottom-nav-item" onclick="setNav(this)">
+    <svg class="si-sm" viewBox="0 0 24 24" stroke="currentColor" fill="none"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    <span class="bottom-nav-label">فئات</span>
+  </button>
+  <button class="bottom-nav-item" style="position:relative;" onclick="setNav(this)">
+    <svg class="si-sm" viewBox="0 0 24 24" stroke="currentColor" fill="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+    <span class="nav-badge">3</span>
+    <span class="bottom-nav-label">تريندات</span>
+  </button>
+  <button class="bottom-nav-item" onclick="setNav(this)">
+    <svg class="si-sm" viewBox="0 0 24 24" stroke="currentColor" fill="none"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+    <span class="bottom-nav-label">سلة</span>
+  </button>
+  <button class="bottom-nav-item" onclick="openSettings()">
+    <svg class="si-sm" viewBox="0 0 24 24" stroke="currentColor" fill="none"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+    <span class="bottom-nav-label">إعدادات</span>
+  </button>
+</nav>
+
+<!-- SETTINGS PANEL -->
+<div class="settings-panel" id="settings-panel">
+  <div class="settings-handle"></div>
+  <div class="settings-title" id="settings-title">
+    <svg class="si-sm" viewBox="0 0 24 24" stroke="currentColor" fill="none"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+    الإعدادات
+  </div>
+  <div class="settings-section">
+    <div class="settings-section-title" id="lang-section-title">
+      <svg class="si-xs" viewBox="0 0 24 24" stroke="#aaa" fill="none"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+      اللغة
+    </div>
+    <div class="lang-grid">
+      <button class="lang-btn active" onclick="setLang('ar')"><span class="lang-flag">🇸🇦</span> العربية</button>
+      <button class="lang-btn" onclick="setLang('en')"><span class="lang-flag">🇬🇧</span> English</button>
+      <button class="lang-btn" onclick="setLang('de')"><span class="lang-flag">🇩🇪</span> Deutsch</button>
+      <button class="lang-btn" onclick="setLang('fr')"><span class="lang-flag">🇫🇷</span> Français</button>
+    </div>
+  </div>
+  <div class="settings-section">
+    <div class="settings-section-title" id="admin-section-title">
+      <svg class="si-xs" viewBox="0 0 24 24" stroke="#aaa" fill="none"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      لوحة الأدمين
+    </div>
+    <div class="admin-lock-area">
+      <div class="admin-lock-icon-wrap"><svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+      <div class="admin-lock-text" id="admin-lock-text">أدخل الكود للوصول إلى لوحة التحكم</div>
+      <input type="password" class="admin-code-input" id="admin-code-input" placeholder="••••" maxlength="10"/>
+      <button class="admin-enter-btn" id="admin-enter-btn" onclick="tryAdminLogin()">دخول</button>
+    </div>
+  </div>
+</div>
+
+<!-- ADMIN PANEL -->
+<div class="admin-panel" id="admin-panel">
+  <div class="admin-header">
+    <div class="admin-header-title">
+      <svg class="si-sm" viewBox="0 0 24 24" stroke="white" fill="none"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+      <span id="admin-panel-title">لوحة التحكم</span>
+    </div>
+    <button class="admin-close-btn" onclick="closeAdmin()">
+      <svg class="si-sm" viewBox="0 0 24 24" stroke="white" fill="none"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </div>
+  <div class="admin-body">
+    <div class="admin-tabs">
+      <button class="admin-tab active" onclick="switchAdminTab('add')">
+        <svg class="si-xs" viewBox="0 0 24 24" stroke="currentColor" fill="none"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+        <span id="atab-add">إضافة منتج</span>
+      </button>
+      <button class="admin-tab" onclick="switchAdminTab('products')">
+        <svg class="si-xs" viewBox="0 0 24 24" stroke="currentColor" fill="none"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+        <span id="atab-products">المنتجات</span>
+      </button>
+      <button class="admin-tab" onclick="switchAdminTab('store')">
+        <svg class="si-xs" viewBox="0 0 24 24" stroke="currentColor" fill="none"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        <span id="atab-store">المتجر</span>
+      </button>
+    </div>
+    <div class="admin-section active" id="admin-add">
+
+      <!-- صورة المنتج أولاً مع معاينة فورية -->
+      <div class="admin-form-group">
+        <label class="admin-label">📸 صورة المنتج — الصق رابط الصورة</label>
+        <div style="display:flex;gap:8px;align-items:center;">
+          <input class="admin-input" id="a-img" placeholder="https://..." oninput="previewImg(this.value)" style="flex:1;"/>
+          <button onclick="pasteImg()" style="background:var(--black);color:white;border:none;border-radius:8px;padding:10px 12px;font-family:'Cairo',sans-serif;font-weight:700;font-size:.8rem;cursor:pointer;white-space:nowrap;">لصق</button>
+        </div>
+        <!-- معاينة الصورة -->
+        <div id="img-preview-wrap" style="display:none;margin-top:10px;border-radius:10px;overflow:hidden;border:1.5px solid #eee;background:#f5f5f5;height:160px;display:none;align-items:center;justify-content:center;">
+          <img id="img-preview" src="" style="width:100%;height:160px;object-fit:contain;" onerror="document.getElementById('img-preview-wrap').style.display='none'"/>
+        </div>
+      </div>
+
+      <!-- اسم المنتج -->
+      <div class="admin-form-group"><label class="admin-label">اسم المنتج</label><input class="admin-input" id="a-name" placeholder="مثال: فستان صيفي أنيق"/></div>
+
+      <!-- السعر والخصم في صف واحد -->
+      <div class="admin-row">
+        <div class="admin-form-group"><label class="admin-label">السعر</label><input class="admin-input" id="a-price" type="number" placeholder="150"/></div>
+        <div class="admin-form-group"><label class="admin-label">السعر القديم</label><input class="admin-input" id="a-old-price" type="number" placeholder="200"/></div>
+      </div>
+
+      <!-- خصم + شارة في صف واحد -->
+      <div class="admin-row">
+        <div class="admin-form-group"><label class="admin-label">تخفيض %</label><input class="admin-input" id="a-discount" type="number" placeholder="30" min="0" max="99"/></div>
+        <div class="admin-form-group"><label class="admin-label">الشارة</label>
+          <select class="admin-select" id="a-badge">
+            <option value="">بدون</option><option value="جديد">جديد</option>
+            <option value="الأكثر مبيعاً">الأكثر مبيعاً</option><option value="تريند">تريند</option>
+            <option value="مميز">مميز</option><option value="وصل حديثاً">وصل حديثاً</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- الماركة والقسم في صف واحد -->
+      <div class="admin-row">
+        <div class="admin-form-group"><label class="admin-label">الماركة</label><input class="admin-input" id="a-brand" placeholder="ستايل بلس"/></div>
+        <div class="admin-form-group"><label class="admin-label">القسم</label>
+          <select class="admin-select" id="a-section">
+            <option value="grid">الرئيسية</option><option value="flash">تخفيضات سريعة</option>
+          </select>
+        </div>
+      </div>
+
+      <input type="hidden" id="a-bg" value="#f5f5f5"/>
+
+      <!-- المقاسات Taille -->
+      <div class="admin-form-group">
+        <label class="admin-label">📏 المقاسات (Taille) — اختياري</label>
+        <div class="size-picker" id="size-picker">
+          <button type="button" class="size-pick-btn" onclick="toggleSize(this,'XS')">XS</button>
+          <button type="button" class="size-pick-btn" onclick="toggleSize(this,'S')">S</button>
+          <button type="button" class="size-pick-btn" onclick="toggleSize(this,'M')">M</button>
+          <button type="button" class="size-pick-btn" onclick="toggleSize(this,'L')">L</button>
+          <button type="button" class="size-pick-btn" onclick="toggleSize(this,'XL')">XL</button>
+          <button type="button" class="size-pick-btn" onclick="toggleSize(this,'XXL')">XXL</button>
+          <button type="button" class="size-pick-btn" onclick="toggleSize(this,'3XL')">3XL</button>
+        </div>
+      </div>
+
+      <button class="admin-btn admin-btn-primary" onclick="addProduct()" id="btn-add-product" style="margin-top:8px;">✅ إضافة المنتج</button>
+    </div>
+    <div class="admin-section" id="admin-products">
+      <div id="admin-product-list" class="admin-product-list">
+        <p style="text-align:center;color:#aaa;padding:30px;font-size:.85rem;" id="no-products-text">لا توجد منتجات بعد</p>
+      </div>
+    </div>
+    <div class="admin-section" id="admin-store">
+      <div class="admin-form-group"><label class="admin-label">اسم المتجر</label><input class="admin-input" id="s-name" value="ستايل بلس"/></div>
+      <div class="admin-form-group"><label class="admin-label">عنوان البانر الرئيسي</label><textarea class="admin-textarea" id="s-hero-title">وفّر أكثر
+على أكثر من
+600,000 منتج</textarea></div>
+      <div class="admin-form-group"><label class="admin-label">نص زر البانر</label><input class="admin-input" id="s-hero-btn" value="تسوق الآن"/></div>
+      <div class="admin-form-group"><label class="admin-label">عنوان البانر الأوسط</label><input class="admin-input" id="s-mid-title" value="خصم 40% تشكيلة الصيف"/></div>
+      <div class="admin-form-group"><label class="admin-label">شارة البانر الأوسط</label><input class="admin-input" id="s-mid-tag" value="عرض محدود"/></div>
+      <div class="admin-form-group"><label class="admin-label">النص الفرعي للبانر</label><input class="admin-input" id="s-mid-sub" value="سارع — العرض ينتهي قريباً"/></div>
+      <div class="admin-form-group"><label class="admin-label">حد الشحن المجاني</label><input class="admin-input" id="s-shipping" value="300 ريال"/></div>
+      <button class="admin-btn admin-btn-success" onclick="saveStoreSettings()" id="btn-save-settings">حفظ الإعدادات</button>
+    </div>
+  </div>
+</div>
+
+<!-- EDIT MODAL -->
+<div class="edit-modal-overlay" id="edit-modal-overlay" onclick="closeEditModal(event)">
+  <div class="edit-modal">
+    <div class="edit-modal-title" id="edit-modal-title">
+      <svg class="si-sm" viewBox="0 0 24 24" stroke="currentColor" fill="none"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+      تعديل المنتج
+    </div>
+    <input type="hidden" id="edit-index"/>
+    <div class="admin-form-group"><label class="admin-label">اسم المنتج</label><input class="admin-input" id="edit-name"/></div>
+    <div class="admin-form-group"><label class="admin-label">الماركة</label><input class="admin-input" id="edit-brand"/></div>
+    <div class="admin-row">
+      <div class="admin-form-group"><label class="admin-label">السعر</label><input class="admin-input" id="edit-price" type="number"/></div>
+      <div class="admin-form-group"><label class="admin-label">السعر القديم</label><input class="admin-input" id="edit-old-price" type="number"/></div>
+    </div>
+    <div class="admin-form-group"><label class="admin-label">تخفيض %</label><input class="admin-input" id="edit-discount" type="number" min="0" max="99"/></div>
+    <div class="admin-form-group"><label class="admin-label">رابط الصورة</label><input class="admin-input" id="edit-img"/></div>
+    <div class="admin-form-group"><label class="admin-label">لون الخلفية</label><input class="admin-input" id="edit-bg"/></div>
+    <div class="admin-form-group"><label class="admin-label">نوع الشارة</label>
+      <select class="admin-select" id="edit-badge">
+        <option value="">بدون</option><option value="جديد">جديد</option>
+        <option value="الأكثر مبيعاً">الأكثر مبيعاً</option><option value="تريند">تريند</option>
+        <option value="مميز">مميز</option><option value="وصل حديثاً">وصل حديثاً</option><option value="خصم">خصم</option>
+      </select>
+    </div>
+    <div class="admin-form-group"><label class="admin-label">القسم</label>
+      <select class="admin-select" id="edit-section">
+        <option value="grid">الشبكة الرئيسية</option><option value="flash">تخفيضات سريعة</option>
+      </select>
+    </div>
+    <div class="admin-form-group">
+      <label class="admin-label">📏 المقاسات (Taille)</label>
+      <div class="size-picker" id="edit-size-picker">
+        <button type="button" class="size-pick-btn" onclick="toggleSizeEdit(this,'XS')">XS</button>
+        <button type="button" class="size-pick-btn" onclick="toggleSizeEdit(this,'S')">S</button>
+        <button type="button" class="size-pick-btn" onclick="toggleSizeEdit(this,'M')">M</button>
+        <button type="button" class="size-pick-btn" onclick="toggleSizeEdit(this,'L')">L</button>
+        <button type="button" class="size-pick-btn" onclick="toggleSizeEdit(this,'XL')">XL</button>
+        <button type="button" class="size-pick-btn" onclick="toggleSizeEdit(this,'XXL')">XXL</button>
+        <button type="button" class="size-pick-btn" onclick="toggleSizeEdit(this,'3XL')">3XL</button>
+      </div>
+    </div>
+    <button class="admin-btn admin-btn-primary" onclick="saveEdit()">💾 حفظ التعديلات</button>
+  </div>
+</div>
+
+<script>
+let products=[];let currentLang='ar';const ADMIN_CODE='Hama';
+const T={
+ar:{dir:'rtl',searchPlaceholder:'بلوفر للنساء',heroHashtag:'#STYLE_SUMMER_SALE',heroCta:'تسوق الآن',infoShipping:'شحن مجاني',infoDeals:'تخفيضات',infoMore:'عرض المزيد',flashTitle:'تخفيضات سريعة',timerLabel:'ينتهي في',emptyGrid:'المتجر فارغ حالياً\nترقبوا المنتجات قريباً!',flashEmpty:'لا توجد عروض حالياً',midTag:'عرض محدود',midTitle:'خصم 40%\nتشكيلة الصيف',midSub:'سارع — العرض ينتهي قريباً',midBtn:'تسوق العرض',settingsTitle:'الإعدادات',langSection:'اللغة',adminSection:'لوحة الأدمين',adminLockText:'أدخل الكود للوصول إلى لوحة التحكم',adminEnterBtn:'دخول',adminWrongCode:'الكود غير صحيح',adminPanelTitle:'لوحة التحكم',atabAdd:'إضافة منتج',atabProducts:'المنتجات',atabStore:'المتجر',navShop:'تسوق',navCats:'فئات',navTrends:'تريندات',navCart:'سلة',navSettings:'إعدادات',cats:{'cat-women':'نسائي','cat-plus':'بلس سايز','cat-kids':'أطفال','cat-men':'رجالي','cat-shoes':'أحذية','cat-jewelry':'مجوهرات','cat-tshirt':'تيشيرتات','cat-mentrend':'ترند رجالي','cat-inner':'ملابس داخلية','cat-dresses':'فساتين'},tabs:{'all':'الكل','women':'نسائي','electronics':'إلكترونيات','men':'رجالي','shoes':'أحذية','sport':'رياضة'},marquee:['شحن مجاني فوق 300 ريال','منتجات أصلية مضمونة','أسعار تنافسية','تشكيلات حصرية','توصيل خلال 48 ساعة'],noProducts:'لا توجد منتجات بعد',productAdded:'تمت إضافة المنتج',productDeleted:'تم حذف المنتج',productEdited:'تم حفظ التعديلات',settingsSaved:'تم حفظ الإعدادات',fillAll:'يرجى ملء الاسم والسعر',currency:'د.ت'},
+en:{dir:'ltr',searchPlaceholder:'Search products...',heroHashtag:'#StyleSummerSale',heroCta:'Shop Now',infoShipping:'Free Shipping',infoDeals:'Deals',infoMore:'See More',flashTitle:'Flash Sale',timerLabel:'Ends in',emptyGrid:'No products yet.\nCheck back soon!',flashEmpty:'No flash deals available',midTag:'Limited Offer',midTitle:'40% OFF\nSummer Collection',midSub:'Hurry — offer ends soon',midBtn:'Shop the Deal',settingsTitle:'Settings',langSection:'Language',adminSection:'Admin Panel',adminLockText:'Enter the code to access admin panel',adminEnterBtn:'Enter',adminWrongCode:'Wrong code',adminPanelTitle:'Admin Panel',atabAdd:'Add Product',atabProducts:'Products',atabStore:'Store',navShop:'Shop',navCats:'Categories',navTrends:'Trends',navCart:'Cart',navSettings:'Settings',cats:{'cat-women':'Women','cat-plus':'Plus Size','cat-kids':'Kids','cat-men':'Men','cat-shoes':'Shoes','cat-jewelry':'Jewelry','cat-tshirt':'T-Shirts','cat-mentrend':'Men Trends','cat-inner':'Underwear','cat-dresses':'Dresses'},tabs:{'all':'All','women':'Women','electronics':'Electronics','men':'Men','shoes':'Shoes','sport':'Sport'},marquee:['Free shipping over 50 TND','Authentic products','Competitive prices','Exclusive collections','Delivery in 48 hours'],noProducts:'No products yet',productAdded:'Product added',productDeleted:'Product deleted',productEdited:'Changes saved',settingsSaved:'Settings saved',fillAll:'Please fill name and price',currency:'د.ت'},
+de:{dir:'ltr',searchPlaceholder:'Produkte suchen...',heroHashtag:'#StyleSommerSale',heroCta:'Jetzt shoppen',infoShipping:'Kostenloser Versand',infoDeals:'Angebote',infoMore:'Mehr anzeigen',flashTitle:'Blitzangebote',timerLabel:'Endet in',emptyGrid:'Noch keine Produkte.\nBald verfügbar!',flashEmpty:'Keine Blitzangebote',midTag:'Begrenztes Angebot',midTitle:'40% RABATT\nSommerkollektion',midSub:'Beeile dich — Angebot endet bald',midBtn:'Zum Angebot',settingsTitle:'Einstellungen',langSection:'Sprache',adminSection:'Admin-Panel',adminLockText:'Code für Admin-Zugang eingeben',adminEnterBtn:'Eingabe',adminWrongCode:'Falscher Code',adminPanelTitle:'Systemsteuerung',atabAdd:'Produkt hinzufügen',atabProducts:'Produkte',atabStore:'Shop',navShop:'Shop',navCats:'Kategorien',navTrends:'Trends',navCart:'Warenkorb',navSettings:'Einstellungen',cats:{'cat-women':'Damen','cat-plus':'Große Größen','cat-kids':'Kinder','cat-men':'Herren','cat-shoes':'Schuhe','cat-jewelry':'Schmuck','cat-tshirt':'T-Shirts','cat-mentrend':'Herren-Trends','cat-inner':'Unterwäsche','cat-dresses':'Kleider'},tabs:{'all':'Alle','women':'Damen','electronics':'Elektronik','men':'Herren','shoes':'Schuhe','sport':'Sport'},marquee:['Kostenloser Versand ab 50 TND','Originalprodukte','Wettbewerbsfähige Preise','Exklusive Kollektionen','Lieferung in 48 Stunden'],noProducts:'Noch keine Produkte',productAdded:'Produkt hinzugefügt',productDeleted:'Produkt gelöscht',productEdited:'Änderungen gespeichert',settingsSaved:'Einstellungen gespeichert',fillAll:'Bitte Name und Preis ausfüllen',currency:'د.ت'},
+fr:{dir:'ltr',searchPlaceholder:'Rechercher des produits...',heroHashtag:'#StyleSoldesÉté',heroCta:'Acheter maintenant',infoShipping:'Livraison gratuite',infoDeals:'Promotions',infoMore:'Voir plus',flashTitle:'Ventes Flash',timerLabel:'Se termine dans',emptyGrid:"Aucun produit pour l'instant.\nRevenez bientôt!",flashEmpty:'Aucune vente flash disponible',midTag:'Offre limitée',midTitle:'40% de réduction\nCollection été',midSub:"Dépêchez-vous — offre se termine bientôt",midBtn:"Voir l'offre",settingsTitle:'Paramètres',langSection:'Langue',adminSection:'Panneau Admin',adminLockText:'Entrez le code pour accéder au panneau',adminEnterBtn:'Entrer',adminWrongCode:'Code incorrect',adminPanelTitle:'Panneau de contrôle',atabAdd:'Ajouter produit',atabProducts:'Produits',atabStore:'Boutique',navShop:'Shop',navCats:'Catégories',navTrends:'Tendances',navCart:'Panier',navSettings:'Paramètres',cats:{'cat-women':'Femmes','cat-plus':'Grande taille','cat-kids':'Enfants','cat-men':'Hommes','cat-shoes':'Chaussures','cat-jewelry':'Bijoux','cat-tshirt':'T-Shirts','cat-mentrend':'Tendances Homme','cat-inner':'Sous-vêtements','cat-dresses':'Robes'},tabs:{'all':'Tout','women':'Femmes','electronics':'Électronique','men':'Hommes','shoes':'Chaussures','sport':'Sport'},marquee:['Livraison gratuite dès 50 TND','Produits authentiques','Prix compétitifs','Collections exclusives','Livraison en 48 heures'],noProducts:'Aucun produit pour l\u2019instant',productAdded:'Produit ajouté',productDeleted:'Produit supprimé',productEdited:'Modifications sauvegardées',settingsSaved:'Paramètres sauvegardés',fillAll:'Veuillez remplir le nom et le prix',currency:'د.ت'}
+};
+
+function setLang(lang){currentLang=lang;const t=T[lang];document.documentElement.lang=lang;document.documentElement.dir=t.dir;document.body.classList.toggle('ltr',t.dir==='ltr');document.querySelectorAll('.lang-btn').forEach((b,i)=>{const ls=['ar','en','de','fr'];b.classList.toggle('active',ls[i]===lang);});document.getElementById('search-input').placeholder=t.searchPlaceholder;document.getElementById('hero-hashtag').textContent=t.heroHashtag;document.getElementById('hero-cta').textContent=t.heroCta;document.getElementById('info-shipping').textContent=t.infoShipping;document.getElementById('info-deals').textContent=t.infoDeals;document.getElementById('info-more').textContent=t.infoMore;document.getElementById('flash-title-text').textContent=t.flashTitle;document.getElementById('timer-label').textContent=t.timerLabel;const emptyGridEl=document.getElementById('empty-grid-text');if(emptyGridEl)emptyGridEl.innerHTML=t.emptyGrid.replace('\n','<br>');const flashEmptyEl=document.getElementById('flash-empty-text');if(flashEmptyEl)flashEmptyEl.textContent=t.flashEmpty;document.getElementById('mid-tag').textContent=t.midTag;document.getElementById('mid-title').innerHTML=t.midTitle.replace('\n','<br>');document.getElementById('mid-sub').textContent=t.midSub;document.getElementById('mid-btn').textContent=t.midBtn;document.getElementById('admin-enter-btn').textContent=t.adminEnterBtn;document.getElementById('admin-lock-text').textContent=t.adminLockText;document.getElementById('admin-panel-title').textContent=t.adminPanelTitle;document.getElementById('atab-add').textContent=t.atabAdd;document.getElementById('atab-products').textContent=t.atabProducts;document.getElementById('atab-store').textContent=t.atabStore;const noProductsEl=document.getElementById('no-products-text');if(noProductsEl)noProductsEl.textContent=t.noProducts;const nl=document.querySelectorAll('.bottom-nav-label');nl[0].textContent=t.navShop;nl[1].textContent=t.navCats;nl[2].textContent=t.navTrends;nl[3].textContent=t.navCart;nl[4].textContent=t.navSettings;Object.keys(t.cats).forEach(k=>{const el=document.querySelector('[data-key="'+k+'"]');if(el)el.textContent=t.cats[k];});document.querySelectorAll('.nav-tab').forEach(tab=>{const k=tab.getAttribute('data-key');if(k&&t.tabs[k])tab.textContent=t.tabs[k];});const track=document.getElementById('marquee-track');const sep='<span class="msep">✦</span>';const doubled=[...t.marquee,...t.marquee];track.innerHTML=doubled.map(s=>'<span>'+s+'</span>'+sep).join('');renderProducts();}
+
+function openSettings(){document.getElementById('overlay').classList.add('open');document.getElementById('settings-panel').classList.add('open');document.getElementById('admin-code-input').value='';document.getElementById('admin-code-input').classList.remove('error');}
+function closeSettings(){document.getElementById('overlay').classList.remove('open');document.getElementById('settings-panel').classList.remove('open');}
+function tryAdminLogin(){const code=document.getElementById('admin-code-input').value.trim();if(code===ADMIN_CODE){closeSettings();openAdmin();}else{const input=document.getElementById('admin-code-input');input.classList.add('error');showToast(T[currentLang].adminWrongCode,'error');setTimeout(()=>input.classList.remove('error'),500);input.value='';}}
+document.getElementById('admin-code-input').addEventListener('keydown',e=>{if(e.key==='Enter')tryAdminLogin();});
+function openAdmin(){document.getElementById('admin-panel').classList.add('open');renderAdminProductList();}
+function closeAdmin(){document.getElementById('admin-panel').classList.remove('open');}
+function switchAdminTab(tab){document.querySelectorAll('.admin-tab').forEach((t,i)=>{const tabs=['add','products','store'];t.classList.toggle('active',tabs[i]===tab);});document.querySelectorAll('.admin-section').forEach(s=>s.classList.remove('active'));document.getElementById('admin-'+tab).classList.add('active');if(tab==='products')renderAdminProductList();}
+
+function getBadgeClass(b){if(!b)return'';if(b==='الأكثر مبيعاً'||b==='تريند'||b==='Most Sold')return'hot';if(b==='وصل حديثاً'||b==='جديد'||b==='New')return'new';if(b==='مميز'||b==='Featured')return'best';return'';}
+
+function prodPH(){return'<div class="prod-ph"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>';}
+
+function renderProducts(){const t=T[currentLang];const gp=products.filter(p=>p.section!=='flash');const fp=products.filter(p=>p.section==='flash');const grid=document.getElementById('products-grid');if(gp.length===0){grid.innerHTML='<div class="empty-state"><div class="empty-icon"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></div><div class="empty-state-text" id="empty-grid-text">'+t.emptyGrid.replace('\n','<br>')+'</div></div>';}else{grid.innerHTML=gp.map(p=>{const dl=p.discount?'<div class="product-badge">-'+p.discount+'%</div>':(p.badge?'<div class="product-badge '+getBadgeClass(p.badge)+'">'+p.badge+'</div>':'');const op=p.oldPrice?'<span class="price-old">'+p.oldPrice+' '+t.currency+'</span>':'';const ic=p.img?'<img src="'+p.img+'" alt="'+p.name+'" loading="lazy"/>':prodPH();const sz=p.sizes&&p.sizes.length?'<div class="size-row">'+p.sizes.map(s=>'<span class="size-chip">'+s+'</span>').join('')+'</div>':'';return'<div class="product-card"><div class="product-img-wrap" style="background:'+(p.bg||'#f5f5f5')+';">'+ic+dl+'</div><div class="product-info"><div class="product-brand">'+p.brand+'</div><div class="product-name">'+p.name+'</div>'+sz+'<div class="product-pricing"><span class="price-new">'+p.price+' '+t.currency+'</span>'+op+'</div></div><button class="add-to-cart" onclick="addCart(this)">+</button></div>';}).join('');}
+const fr2=document.getElementById('flash-row');if(fp.length===0){fr2.innerHTML='<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;padding:30px;gap:10px;"><div style="opacity:.2;color:#333;"><svg width="36" height="36" viewBox="0 0 24 24" fill="#f05a00"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div><div style="font-size:.82rem;color:#bbb;font-weight:600;">'+t.flashEmpty+'</div></div>';}else{fr2.innerHTML=fp.map(p=>{const op=p.oldPrice?'<span class="price-old">'+p.oldPrice+' '+t.currency+'</span>':'';const ic=p.img?'<img src="'+p.img+'" alt="'+p.name+'" loading="lazy"/>':prodPH();const sz=p.sizes&&p.sizes.length?'<div class="size-row">'+p.sizes.map(s=>'<span class="size-chip">'+s+'</span>').join('')+'</div>':'';return'<div class="product-card-h"><div class="product-img-wrap" style="background:'+(p.bg||'#f5f5f5')+';">'+ic+(p.badge?'<div class="product-badge '+getBadgeClass(p.badge)+'">'+p.badge+'</div>':'')+'</div><div class="product-info"><div class="product-name">'+p.name+'</div>'+sz+'<div class="product-pricing"><span class="price-new">'+p.price+' '+t.currency+'</span>'+op+'</div></div></div>';}).join('');}}
+
+function renderAdminProductList(){const t=T[currentLang];const list=document.getElementById('admin-product-list');if(products.length===0){list.innerHTML='<p style="text-align:center;color:#aaa;padding:30px;font-size:.85rem;" id="no-products-text">'+t.noProducts+'</p>';return;}list.innerHTML=products.map((p,i)=>{const th=p.img?'<img src="'+p.img+'" alt="'+p.name+'" style="width:100%;height:100%;object-fit:cover;" loading="lazy"/>':'<div class="admin-product-placeholder"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>';return'<div class="admin-product-item"><div class="admin-product-thumb">'+th+'</div><div class="admin-product-details"><div class="admin-product-name-text">'+p.name+'</div><div class="admin-product-price-text">'+p.price+' '+t.currency+(p.discount?'<span class="discount-tag">-'+p.discount+'%</span>':'')+'</div></div><div class="admin-product-actions"><button class="admin-product-btn admin-edit-btn" onclick="openEditModal('+i+')">تعديل</button><button class="admin-product-btn admin-delete-btn" onclick="deleteProduct('+i+')">حذف</button></div></div>';}).join('');}
+
+function saveStoreSettings(){document.getElementById('hero-title').innerHTML=document.getElementById('s-hero-title').value.replace(/\n/g,'<br>');document.getElementById('hero-cta').textContent=document.getElementById('s-hero-btn').value;document.getElementById('mid-title').innerHTML=document.getElementById('s-mid-title').value.replace(/\n/g,'<br>');document.getElementById('mid-tag').textContent=document.getElementById('s-mid-tag').value;document.getElementById('mid-sub').textContent=document.getElementById('s-mid-sub').value;document.getElementById('mid-btn').textContent=document.getElementById('s-hero-btn').value;document.getElementById('info-shipping-sub').textContent='أضف '+document.getElementById('s-shipping').value+' للتأهل';showToast(T[currentLang].settingsSaved,'success');}
+
+function showToast(msg,type=''){const toast=document.getElementById('toast');toast.textContent=msg;toast.className='toast'+(type?' '+type:'');toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),2500);}
+
+const TG_TOKEN='8970182102:AAEYw8Bb-H3FoS-67KkFvmtk5kG6EQLeZVw';
+const TG_CHAT='7286224359';
+function sendTelegramNotif(productName,price){const msg=`🛍️ طلب جديد!\n\n📦 المنتج: ${productName}\n💰 السعر: ${price}\n⏰ الوقت: ${new Date().toLocaleTimeString('ar')}\n\n#متجري`;fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendMessage`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({chat_id:TG_CHAT,text:msg,parse_mode:'HTML'})}).catch(()=>{});}
+
+let cartCount=0;
+function addCart(btn){cartCount++;const card=btn.closest('.product-card');const name=card?card.querySelector('.product-name')?.textContent:'منتج';const price=card?card.querySelector('.price-new')?.textContent:'';btn.textContent='✓';btn.style.background='#2E7D32';setTimeout(()=>{btn.textContent='+';btn.style.background='';},1500);const navItems=document.querySelectorAll('.bottom-nav-item');const cb=navItems[3];if(!cb)return;let badge=cb.querySelector('.nav-badge');if(!badge){badge=document.createElement('span');badge.className='nav-badge';cb.appendChild(badge);}badge.textContent=cartCount;sendTelegramNotif(name,price);}
+function setNav(item){document.querySelectorAll('.bottom-nav-item').forEach(x=>x.classList.remove('active'));item.classList.add('active');}
+
+function previewImg(url){const wrap=document.getElementById('img-preview-wrap');const img=document.getElementById('img-preview');if(url&&url.startsWith('http')){img.src=url;wrap.style.display='flex';}else{wrap.style.display='none';img.src='';}}
+
+async function pasteImg(){try{const text=await navigator.clipboard.readText();if(text&&text.startsWith('http')){document.getElementById('a-img').value=text;previewImg(text);}else{showToast('الحافظة لا تحتوي رابط صورة','error');}}catch(e){showToast('الصق الرابط يدوياً في الحقل','error');}}
+
+function toggleSize(btn){btn.classList.toggle('on');}
+function toggleSizeEdit(btn){btn.classList.toggle('on');}
+function getSelectedSizes(pickerId){return Array.from(document.querySelectorAll('#'+pickerId+' .size-pick-btn.on')).map(b=>b.textContent);}
+function resetSizePicker(pickerId){document.querySelectorAll('#'+pickerId+' .size-pick-btn').forEach(b=>b.classList.remove('on'));}
+function applySizesToPicker(pickerId,sizes){resetSizePicker(pickerId);if(!sizes||!sizes.length)return;document.querySelectorAll('#'+pickerId+' .size-pick-btn').forEach(b=>{if(sizes.includes(b.textContent))b.classList.add('on');});}
+
+function addProduct(){const t=T[currentLang];const name=document.getElementById('a-name').value.trim();const price=document.getElementById('a-price').value.trim();if(!name||!price){showToast(t.fillAll,'error');return;}const sizes=getSelectedSizes('size-picker');products.push({name,price:parseFloat(price),oldPrice:parseFloat(document.getElementById('a-old-price').value)||0,discount:parseInt(document.getElementById('a-discount').value)||0,brand:document.getElementById('a-brand').value.trim()||'Style+',img:document.getElementById('a-img').value.trim()||'',bg:'#f5f5f5',badge:document.getElementById('a-badge').value,section:document.getElementById('a-section').value,sizes});renderProducts();showToast(t.productAdded,'success');['a-name','a-brand','a-price','a-old-price','a-discount','a-img'].forEach(id=>document.getElementById(id).value='');document.getElementById('a-badge').value='';document.getElementById('a-section').value='grid';document.getElementById('img-preview-wrap').style.display='none';document.getElementById('img-preview').src='';resetSizePicker('size-picker');}
+
+function deleteProduct(idx){products.splice(idx,1);renderProducts();renderAdminProductList();showToast(T[currentLang].productDeleted);}
+
+function openEditModal(idx){const p=products[idx];document.getElementById('edit-index').value=idx;document.getElementById('edit-name').value=p.name;document.getElementById('edit-brand').value=p.brand||'';document.getElementById('edit-price').value=p.price;document.getElementById('edit-old-price').value=p.oldPrice||'';document.getElementById('edit-discount').value=p.discount||'';document.getElementById('edit-img').value=p.img||'';document.getElementById('edit-bg').value=p.bg||'#f5f5f5';document.getElementById('edit-badge').value=p.badge||'';document.getElementById('edit-section').value=p.section||'grid';applySizesToPicker('edit-size-picker',p.sizes||[]);document.getElementById('edit-modal-overlay').classList.add('open');}
+function closeEditModal(e){if(e.target===document.getElementById('edit-modal-overlay'))document.getElementById('edit-modal-overlay').classList.remove('open');}
+function saveEdit(){const idx=parseInt(document.getElementById('edit-index').value);const sizes=getSelectedSizes('edit-size-picker');products[idx]={name:document.getElementById('edit-name').value.trim(),brand:document.getElementById('edit-brand').value.trim(),price:parseFloat(document.getElementById('edit-price').value)||0,oldPrice:parseFloat(document.getElementById('edit-old-price').value)||0,discount:parseInt(document.getElementById('edit-discount').value)||0,img:document.getElementById('edit-img').value.trim()||'',bg:document.getElementById('edit-bg').value.trim()||'#f5f5f5',badge:document.getElementById('edit-badge').value,section:document.getElementById('edit-section').value,sizes};document.getElementById('edit-modal-overlay').classList.remove('open');renderProducts();renderAdminProductList();showToast(T[currentLang].productEdited,'success');}
+
+document.querySelectorAll('.nav-tab').forEach(t=>{t.addEventListener('click',()=>{document.querySelectorAll('.nav-tab').forEach(x=>x.classList.remove('active'));t.classList.add('active');});});
+document.querySelectorAll('.prod-tab').forEach(t=>{t.addEventListener('click',()=>{document.querySelectorAll('.prod-tab').forEach(x=>{x.classList.remove('active');x.classList.remove('active-black');});t.classList.add('active');});});
+
+let totalSec=2*3600+47*60+33;
+function updateTimer(){totalSec--;if(totalSec<0)totalSec=0;const h=Math.floor(totalSec/3600),m=Math.floor((totalSec%3600)/60),s=totalSec%60;document.getElementById('timer-h').textContent=String(h).padStart(2,'0');document.getElementById('timer-m').textContent=String(m).padStart(2,'0');document.getElementById('timer-s').textContent=String(s).padStart(2,'0');}
+setInterval(updateTimer,1000);
+renderProducts();
+</script>
+</body>
+</html>
